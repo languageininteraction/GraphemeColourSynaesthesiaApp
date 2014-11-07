@@ -18,16 +18,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 -->
 <html>
     <head>
-        <title>Grapheme Colour Synaesthesia App Test Pages</title>
+        <title>Imitation Mobile Frame</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
-        <a href="./synaesthesia-0.1-testing/TestingFrame.html">synaesthesia-0.1-testing (testing frame for desktop)</a><br>
-        <a href="./synaesthesia-0.1-testing/GraphemeColour.html">synaesthesia-0.1-testing (full screen for mobile)</a><br>
-        <a href="./synaesthesia-0.1.70-testing/TestingFrame.html">synaesthesia-0.1.70-testing (testing frame for desktop)</a><br>
-        <a href="./synaesthesia-0.1.70-testing/GraphemeColour.html">synaesthesia-0.1.70-testing (full screen for mobile)</a><br>
-        <a href="./synquiz-0.2.108-testing/TestingFrame.html">synquiz-0.2.108-testing (testing frame for desktop)</a><br>
-        <a href="./synquiz-0.2.108-testing/GraphemeColour.html">synquiz-0.2.108-testing (full screen for mobile)</a><br>
+    <body style="background: black;">
+        <script language="javascript" type="text/javascript">
+            function rotate() {
+                var frameToRotate = document.getElementById("testingFrame");
+                var oldWidth = frameToRotate.style.width;
+                var oldHeight = frameToRotate.style.height;
+                frameToRotate.style.width = oldHeight;
+                frameToRotate.style.height = oldWidth;
+            }
+        </script>
+        <table>
+            <tr><td><button type="button" onclick="rotate();">rotate</button></td><td></td></tr>
+            <tr><td></td><td><iframe style="margin-left: auto; margin-right: auto; height:360px; width:640px;" id="testingFrame" src="GraphemeColour.html"></iframe></td></tr>
+        </table>
     </body>
 </html>
