@@ -1,16 +1,16 @@
 #mvn install
 cd target
-synquizname=synquiz-1.1.161-stable
+synquizname=synquiz-1.1.163-stable
 rm -rf $synquizname-cordova
 unzip $synquizname-cordova.zip -d $synquizname-cordova
 cd $synquizname-cordova
 cordova platform add ios
 cordova platform add android
 cordova plugin add https://github.com/danwilson/google-analytics-plugin.git
-cordova plugin add org.apache.cordova.device
-cordova plugin add org.apache.cordova.statusbar
-cordova plugin add org.apache.cordova.splashscreen
-cordova plugin add org.apache.cordova.inappbrowser
+cordova plugin add cordova-plugin-device
+cordova plugin add cordova-plugin-statusbar
+cordova plugin add cordova-plugin-splashscreen
+cordova plugin add cordova-plugin-inappbrowser
 # (this plugin did not function correctly) cordova plugin add https://github.com/leecrossley/cordova-plugin-social-message.git
 cordova plugin add https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git #cordova plugin add nl.x-services.plugins.socialsharing
 #cordova plugin add https://github.com/driftyco/ionic-plugins-keyboard.git # this provides events for keyboard hide and show which are needed to resize the app window area
@@ -66,7 +66,8 @@ convert -resize 320x480^ -gravity center -extent 320x480 -quality 100 $splashIma
 convert -resize 720x1280^ -gravity center -extent 720x1280 -quality 100 $splashImage platforms/android/res/drawable-port-xhdpi/screen.png
 
 # copy the ant.properties file with the android key store and alias (key.store= key.alias=) information so that the APK can be signed
-cp ~/android-keys/ant.properties platforms/android/
+#cp ~/android-keys/ru-release-signing.properties platforms/android/release-signing.properties
+cp ~/android-keys/ru-build.json build.json
 
 echo "building"
 #cordova prepare
@@ -75,7 +76,8 @@ cordova build -release
 #cordova emulate ios --target="iPad"
 #cordova emulate ios --target="iPhone"
 #cordova emulate android 
-
+echo "skipping iOS build at this stage"
+exit
 echo "make the iOS icons"
 convert -resize 180x180 -quality 100 $iconImage $iconResourcesDir/icon-60@3x.png
 convert -resize 60x60 -quality 100 $iconImage $iconResourcesDir/icon-60.png
